@@ -1,0 +1,99 @@
+# Shared .gitignore
+
+# System files and folders
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+*.lock
+
+# envirement IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+
+# package mamagers
+node_modules/
+bower_components/
+vendor/
+jspm_packages/
+
+# cache files
+*.pyc
+__pycache__/
+*.pyo
+*.rbc
+
+# build folders
+dist/
+build/
+target/
+out/
+*.class
+*.o
+*.dll
+*.so
+
+# configuration files
+*.conf
+*.config
+*.cfg
+*.ini
+*.properties
+*.env
+*.env.example
+*.pem
+*.key
+*.cer
+*.cert
+*.crt
+*.csr
+*.pfx
+
+# archives and binar files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.rar
+*.7z
+*.bin
+*.exe
+*.jar
+*.war
+*.ear
+
+# database files
+*.sqlite
+*.sqlite3
+*.db
+*.sql
+*.mdb
+*.accdb
+
+# text editors
+*.tss
+*.scssc
+*.sass-cache
+*.css.map
+*.js.map
+*.jst
+*.coffee
+*.php~
+*.rb~
+*.orig
+*.rej
+*.swo
+*.cproject
+*.directory
+
+.env
