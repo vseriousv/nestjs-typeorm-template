@@ -1,75 +1,97 @@
-<p align="center">
-    <a href="https://github.com/vseriousv" target="blank"><img src="https://avatars.githubusercontent.com/u/1023986?v=4" width="100" alt="vseriousv" /></a>
-    <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a> 
-</p>
-
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![Nest](assets/logo.png)
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Starter kit project made with [Nest](https://github.com/nestjs/nest) that demonstrates CRUD user, JWT authentication, CRUD posts.
+
+### Technologies implemented:
+
+-   [typeorm](https://github.com/typeorm/typeorm) (ORM) + [PostgreSQL](https://www.postgresql.org/)
+-   [JWT](https://jwt.io/)
+-   [Swagger](https://swagger.io/)
+
+## Prerequisites
+
+-   [Node.js](https://nodejs.org/) (>= 16.13.1)
+-   [yarn](https://yarnpkg.com/) (>= 1.22.17)
 
 ## Installation
 
-```bash
+```shell
 $ yarn install
 ```
 
+## Setting up the database for development and test
+
+Copy .env-example to .env
+
+```shell
+$ cp .env-example .env
+```
+
+PostgreSQL database connection options are shown in the following table:
+
+| Option   | Development | Test      |
+| -------- | ----------- | --------- |
+| Host     | localhost   | localhost |
+| Port     | 5432        | 5432      |
+| Username | postgres    | postgres  |
+| Password | postgres    | postgres  |
+| Database | nest        | nest_test |
+
 ## Running the app
 
-```bash
+```shell
 # development
-$ yarn run start
+$ yarn start
 
 # watch mode
-$ yarn run start:dev
+$ yarn start:dev
 
 # production mode
-$ yarn run start:prod
+$ yarn start:prod
 ```
 
-## Test
+## Other commands
 
-```bash
-# unit tests
-$ yarn run test
+```shell
+# formatting code
+$ yarn format
 
-# e2e tests
-$ yarn run test:e2e
+# generate migrations {name-migration} - change the name for your migration
+$ yarn migration:generate -- db/migrations/{name-migration}
 
-# test coverage
-$ yarn run test:cov
+# run migrations
+$ yarn migration:run 
+
+# revert one migration from database
+$ yarn migration:revert
+
 ```
 
-## Support
+## Run production configuration
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```
+NODE_ENV=development \
+DB_HOST=127.0.0.1 \
+DB_PORT=5432 \
+DB_USERNAME=postgres \
+DB_PASSWORD=password \
+DB_NAME=nestjs_typeorm_template \
+JWT_SECRET=jwtSuperSecret \
+```
 
-## Stay in touch
+## Swagger API docs
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+This project uses the Nest swagger module for API documentation. [NestJS Swagger](https://github.com/nestjs/swagger) - [www.swagger.io](https://swagger.io/)  
+Swagger docs will be available at localhost:3000/v1/docs
 
-## License
+## Author template
+[![Telegram](https://img.shields.io/badge/Github-vseriousv-lightgrey?style=plastic&logo=github)](https://github.com/vseriousv)
+[![Telegram](https://img.shields.io/badge/Telegram-%40knowyourbackend-blue?style=plastic&logo=telegram)](https://t.me/knowyourbackend)
+[![Instagram](https://img.shields.io/badge/Instagram-%40kirill_s_gavr-D301C5?style=plastic&logo=instagram)](https://www.instagram.com/kirill_s_gavr/)
+[![YouTube](https://img.shields.io/badge/YouTube-%40kirill_s_gavr-FF0000?style=plastic&logo=youtube)](https://www.youtube.com/@kirill_s_gavr)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kirill_s_gavr-0077B5?style=plastic&logo=linkedin)](https://www.linkedin.com/in/kirill-gavrilov-84a94ab6/)
 
-Nest is [MIT licensed](LICENSE).
+Hey there 👋
+I'm a Senior Backend Developer specializing in blockchain projects. I work on the development of backend systems and DevOps in blockchain companies. I'm also passionate about growing the KnowYourBackend community.
