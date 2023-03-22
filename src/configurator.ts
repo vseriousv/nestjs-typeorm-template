@@ -4,9 +4,6 @@ export const configurator = () => ({
   },
   auth: {
     jwtSecret: process.env.JWT_SECRET || '@rGo5epFuwsn9wf#glJtDo7qk2NwLtBV',
-    jwtExpiresIn: +process.env.JWT_EXPIRES_IN || 7200,
-    jwtRtExpiresIn: +process.env.JWT_RT_EXPIRES_IN_MS || 2592000 * 1000,
-    forbiddenResendTtl: +process.env.EMAIL_FORBIDDEN_TIME || 60 * 1000,
   },
   postgres: {
     host: process.env.DB_HOST,

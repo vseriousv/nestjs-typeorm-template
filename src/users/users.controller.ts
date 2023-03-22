@@ -1,34 +1,68 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { UserLoginRequestDto } from './dto/user-login-request.dto';
+import { Body, Controller, Delete, Get, HttpCode, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UsersService } from './users.service';
+import { UserDto } from './dto/user.dto';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { UserLoginResponseDto } from './dto/user-login-response.dto';
+import { AuthGuard } from '@nestjs/passport';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
+@ApiTags('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  @Post('register')
+  @ApiOkResponse({ type: UserLoginResponseDto })
+  register(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<UserLoginResponseDto> {
     return this.usersService.create(createUserDto);
   }
 
+  @Post('login')
+  @HttpCode(200)
+  @ApiOkResponse({ type: UserLoginResponseDto })
+  login(
+    @Body() userLoginRequestDto: UserLoginRequestDto,
+  ): Promise<UserLoginResponseDto> {
+    return this.usersService.login(userLoginRequestDto);
+  }
+
   @Get()
-  findAll() {
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @ApiOkResponse({ type: [UserDto] })
+  findAll(): Promise<UserDto[]> {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  @Get('me')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @ApiOkResponse({ type: UserDto })
+  async getUser(@Req() request): Promise<UserDto> {
+    console.log('test');
+    return this.usersService.getUser(request.user.id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  @Put('me')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @ApiOkResponse({ type: UserDto })
+  update(
+    @Body() updateUserDto: UpdateUserDto,
+    @Req() request,
+  ): Promise<UserDto> {
+    return this.usersService.update(request.user.id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  @Delete('me')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @ApiOkResponse({ type: UserDto })
+  delete(@Req() request): Promise<UserDto> {
+    return this.usersService.delete(request.user.id);
   }
 }

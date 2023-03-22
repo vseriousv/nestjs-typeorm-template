@@ -95,5 +95,3 @@ out/
 *.swo
 *.cproject
 *.directory
-
-.env
