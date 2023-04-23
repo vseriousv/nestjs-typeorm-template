@@ -11,7 +11,6 @@ Desktop.ini
 *.tmp
 *.bak
 *.swp
-*.lock
 
 # envirement IDE
 .idea/
